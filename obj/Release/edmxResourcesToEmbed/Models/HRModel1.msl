@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="HRSQLModelStoreContainer" CdmEntityContainer="HRSQLEntities">
+    <EntitySetMapping Name="Employee">
+      <EntityTypeMapping TypeName="HRSQLModel.Employee">
+        <MappingFragment StoreEntitySet="Employee">
+          <ScalarProperty Name="Dept" ColumnName="Dept" />
+          <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmployeeAcount">
+      <EntityTypeMapping TypeName="HRSQLModel.EmployeeAcount">
+        <MappingFragment StoreEntitySet="EmployeeAcount">
+          <ScalarProperty Name="int" ColumnName="int" />
+          <ScalarProperty Name="Depart" ColumnName="Depart" />
+          <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+          <ScalarProperty Name="EmpName" ColumnName="EmpName" />
+          <ScalarProperty Name="CreatDate" ColumnName="CreatDate" />
+          <ScalarProperty Name="CraetPeople" ColumnName="CraetPeople" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HRAdmin">
+      <EntityTypeMapping TypeName="HRSQLModel.HRAdmin">
+        <MappingFragment StoreEntitySet="HRAdmin">
+          <ScalarProperty Name="int" ColumnName="int" />
+          <ScalarProperty Name="Account" ColumnName="Account" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Depart" ColumnName="Depart" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Lev" ColumnName="Lev" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HRDepartment">
+      <EntityTypeMapping TypeName="HRSQLModel.HRDepartment">
+        <MappingFragment StoreEntitySet="HRDepartment">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Record">
+      <EntityTypeMapping TypeName="HRSQLModel.Record">
+        <MappingFragment StoreEntitySet="Record">
+          <ScalarProperty Name="Dept" ColumnName="Dept" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="EnrollID" ColumnName="EnrollID" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Min" ColumnName="Min" />
+          <ScalarProperty Name="Mout" ColumnName="Mout" />
+          <ScalarProperty Name="Ain" ColumnName="Ain" />
+          <ScalarProperty Name="Aout" ColumnName="Aout" />
+          <ScalarProperty Name="TimeRecord" ColumnName="TimeRecord" />
+          <ScalarProperty Name="Cheked" ColumnName="Cheked" />
+          <ScalarProperty Name="Marking" ColumnName="Marking" />
+          <ScalarProperty Name="int" ColumnName="int" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RH2">
+      <EntityTypeMapping TypeName="HRSQLModel.RH2">
+        <MappingFragment StoreEntitySet="RH2">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="PNumber" ColumnName="PNumber" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="LDate" ColumnName="LDate" />
+          <ScalarProperty Name="ODate" ColumnName="ODate" />
+          <ScalarProperty Name="Division" ColumnName="Division" />
+          <ScalarProperty Name="IDcard" ColumnName="IDcard" />
+          <ScalarProperty Name="Codename" ColumnName="Codename" />
+          <ScalarProperty Name="OrderDoctor" ColumnName="OrderDoctor" />
+          <ScalarProperty Name="Morder" ColumnName="Morder" />
+          <ScalarProperty Name="MorderName" ColumnName="MorderName" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+          <ScalarProperty Name="Money" ColumnName="Money" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmpHours">
+      <EntityTypeMapping TypeName="HRSQLModel.EmpHours">
+        <MappingFragment StoreEntitySet="EmpHours">
+          <ScalarProperty Name="Rhours" ColumnName="Rhours" />
+          <ScalarProperty Name="EmpName" ColumnName="EmpName" />
+          <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+          <ScalarProperty Name="int" ColumnName="int" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmployeeHistory">
+      <EntityTypeMapping TypeName="HRSQLModel.EmployeeHistory">
+        <MappingFragment StoreEntitySet="EmployeeHistory">
+          <ScalarProperty Name="TotoalHours" ColumnName="TotoalHours" />
+          <ScalarProperty Name="HistoryHours" ColumnName="HistoryHours" />
+          <ScalarProperty Name="ReasonHours" ColumnName="ReasonHours" />
+          <ScalarProperty Name="ReasonContext" ColumnName="ReasonContext" />
+          <ScalarProperty Name="Reason" ColumnName="Reason" />
+          <ScalarProperty Name="CreatePeople" ColumnName="CreatePeople" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="EmpName" ColumnName="EmpName" />
+          <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+          <ScalarProperty Name="Depart" ColumnName="Depart" />
+          <ScalarProperty Name="int" ColumnName="int" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmployeeHR">
+      <EntityTypeMapping TypeName="HRSQLModel.EmployeeHR">
+        <MappingFragment StoreEntitySet="EmployeeHR">
+          <ScalarProperty Name="EmpDepart" ColumnName="EmpDepart" />
+          <ScalarProperty Name="EmpName" ColumnName="EmpName" />
+          <ScalarProperty Name="EmpNumber" ColumnName="EmpNumber" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BoneXrayModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BonePa">
+          <Key>
+            <PropertyRef Name="int" />
+          </Key>
+          <Property Name="int" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PaName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Context" Type="nvarchar(max)" />
+          <Property Name="CreateDate" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Img">
+          <Key>
+            <PropertyRef Name="int" />
+          </Key>
+          <Property Name="int" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ImagePName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ImgRouter" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ImgCreateDate" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreatePeople" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="BoneXrayModelStoreContainer">
+          <EntitySet Name="BonePa" EntityType="Self.BonePa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Img" EntityType="Self.Img" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BoneXrayModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BonePa">
+          <Key>
+            <PropertyRef Name="int" />
+          </Key>
+          <Property Name="int" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PaName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Context" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Img">
+          <Key>
+            <PropertyRef Name="int" />
+          </Key>
+          <Property Name="int" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ImagePName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ImgRouter" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ImgCreateDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatePeople" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="BoneXrayEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BonePa" EntityType="Self.BonePa" />
+          <EntitySet Name="Img" EntityType="Self.Img" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BoneXrayModelStoreContainer" CdmEntityContainer="BoneXrayEntities">
+          <EntitySetMapping Name="BonePa">
+            <EntityTypeMapping TypeName="BoneXrayModel.BonePa">
+              <MappingFragment StoreEntitySet="BonePa">
+                <ScalarProperty Name="int" ColumnName="int" />
+                <ScalarProperty Name="PaID" ColumnName="PaID" />
+                <ScalarProperty Name="PaName" ColumnName="PaName" />
+                <ScalarProperty Name="Context" ColumnName="Context" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Img">
+            <EntityTypeMapping TypeName="BoneXrayModel.Img">
+              <MappingFragment StoreEntitySet="Img">
+                <ScalarProperty Name="int" ColumnName="int" />
+                <ScalarProperty Name="PaID" ColumnName="PaID" />
+                <ScalarProperty Name="ImagePName" ColumnName="ImagePName" />
+                <ScalarProperty Name="ImgRouter" ColumnName="ImgRouter" />
+                <ScalarProperty Name="ImgCreateDate" ColumnName="ImgCreateDate" />
+                <ScalarProperty Name="CreatePeople" ColumnName="CreatePeople" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

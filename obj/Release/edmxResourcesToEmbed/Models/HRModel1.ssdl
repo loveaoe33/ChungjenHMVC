@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HRSQLModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--產生期間發現錯誤:
+警告 6013: 資料表/檢視 'HRSQL.dbo.BackupMonth' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
+        <EntityType Name="BackupMonth">
+          <Property Name="Dept" Type="nvarchar(max)" />
+          <Property Name="UserID" Type="nvarchar(max)" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="EnrollID" Type="nvarchar(max)" />
+          <Property Name="Date" Type="nvarchar(max)" />
+          <Property Name="Min" Type="nvarchar(max)" />
+          <Property Name="Mout" Type="nvarchar(max)" />
+          <Property Name="Ain" Type="nvarchar(max)" />
+          <Property Name="Aout" Type="nvarchar(max)" />
+          <Property Name="TimeRecord" Type="nvarchar(max)" />
+          <Property Name="Cheked" Type="nchar" MaxLength="10" />
+          <Property Name="int" Type="int" />
+          <Property Name="Month" Type="nchar" MaxLength="10" />
+        </EntityType>-->
+  <EntityType Name="EmpHours">
+    <Key>
+      <PropertyRef Name="int" />
+    </Key>
+    <Property Name="int" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmpID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="EmpName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Rhours" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="Dept" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="EmployeeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="EmployeeId" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EmployeeAcount">
+    <Key>
+      <PropertyRef Name="int" />
+    </Key>
+    <Property Name="int" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Depart" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="EmpID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="EmpName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CreatDate" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CraetPeople" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EmployeeHistory">
+    <Key>
+      <PropertyRef Name="int" />
+    </Key>
+    <Property Name="int" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Depart" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="EmpID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="EmpName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CreateDate" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CreatePeople" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Reason" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ReasonContext" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ReasonHours" Type="int" Nullable="false" />
+    <Property Name="HistoryHours" Type="int" Nullable="false" />
+    <Property Name="TotoalHours" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EmployeeHR">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmpNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="EmpName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="EmpDepart" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HRAdmin">
+    <Key>
+      <PropertyRef Name="int" />
+    </Key>
+    <Property Name="int" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Account" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Depart" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Lev" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HRDepartment">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Department" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Record">
+    <Key>
+      <PropertyRef Name="int" />
+    </Key>
+    <Property Name="Dept" Type="nvarchar(max)" />
+    <Property Name="UserID" Type="nvarchar(max)" />
+    <Property Name="Name" Type="nvarchar(max)" />
+    <Property Name="EnrollID" Type="nvarchar(max)" />
+    <Property Name="Date" Type="nvarchar(max)" />
+    <Property Name="Min" Type="nvarchar(max)" />
+    <Property Name="Mout" Type="nvarchar(max)" />
+    <Property Name="Ain" Type="nvarchar(max)" />
+    <Property Name="Aout" Type="nvarchar(max)" />
+    <Property Name="TimeRecord" Type="nvarchar(max)" />
+    <Property Name="Cheked" Type="nvarchar" MaxLength="50" />
+    <Property Name="Marking" Type="nvarchar" MaxLength="50" />
+    <Property Name="int" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RH2">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PNumber" Type="float" />
+    <Property Name="Number" Type="float" />
+    <Property Name="Name" Type="nvarchar" MaxLength="255" />
+    <Property Name="LDate" Type="nvarchar" MaxLength="255" />
+    <Property Name="ODate" Type="nvarchar" MaxLength="255" />
+    <Property Name="Division" Type="nvarchar" MaxLength="255" />
+    <Property Name="IDcard" Type="nvarchar" MaxLength="255" />
+    <Property Name="Codename" Type="nvarchar" MaxLength="255" />
+    <Property Name="OrderDoctor" Type="nvarchar" MaxLength="255" />
+    <Property Name="Morder" Type="nvarchar" MaxLength="255" />
+    <Property Name="MorderName" Type="nvarchar" MaxLength="255" />
+    <Property Name="StartDate" Type="nvarchar" MaxLength="255" />
+    <Property Name="EndDate" Type="nvarchar" MaxLength="255" />
+    <Property Name="Quantity" Type="float" />
+    <Property Name="Count" Type="nvarchar" MaxLength="255" />
+    <Property Name="Money" Type="float" />
+  </EntityType>
+  <EntityContainer Name="HRSQLModelStoreContainer">
+    <EntitySet Name="EmpHours" EntityType="Self.EmpHours" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeeAcount" EntityType="Self.EmployeeAcount" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeeHistory" EntityType="Self.EmployeeHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeeHR" EntityType="Self.EmployeeHR" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HRAdmin" EntityType="Self.HRAdmin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HRDepartment" EntityType="Self.HRDepartment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Record" EntityType="Self.Record" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RH2" EntityType="Self.RH2" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

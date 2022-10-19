@@ -1,0 +1,308 @@
+﻿
+@{
+    ViewBag.Title = "SelectHistory";
+    Layout = "~/Views/Shared/HRLaout.cshtml";
+}
+<div></div><br>
+  
+        <h2>SelectHistory</h2>
+
+
+
+        <!DOCTYPE html>
+
+        <html>
+        <head>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/TableExport/5.2.0/js/tableexport.min.js" integrity="sha512-XmZS54be9JGMZjf+zk61JZaLZyjTRgs41JLSmx5QlIP5F+sSGIyzD2eJyxD4K6kGGr7AsVhaitzZ2WTfzpsQzg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+            <meta name="viewport" content="width=device-width" />
+            <meta name="viewport" content="width=device-width" />
+            <title>SelectHistory</title>
+            <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+            <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+            <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            <meta name="viewport" content="width=device-width" />
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+            <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+            <meta name="viewport" content="width=device-width" />
+            <link rel="stylesheet" href="/Content/bootstrap-datetimepicker.css" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/locale/zh-tw.js"></script>
+            <title>TurnoverPage</title>
+        </head>
+        <body>
+
+            <div class="form-horizontal">
+                <h4>積借休查詢</h4>
+                <hr />
+                @Html.ActionLink("首頁", "HRMenu")<p>
+
+                    <div class="container col-md-1">
+                        <div class="row">
+                        </div>
+                    </div>
+
+
+                    <div class="container col-md-11">
+                        <div class="row">
+                            <h3><label for="start">選擇日期:</label></h3>
+
+                            <input type="date" class="date" id="start" name="trip-start"
+                                   value="2021-09">
+
+
+                            <select class="form-select Depart" aria-label="Default select example">
+                                <option selected>Open this select menu</option>
+                            </select>
+
+                            <select class="form-select Employee" aria-label="Default select example">
+                            </select>
+
+
+                            <button type="button" class="btn btn-info PostMonth" style="text-align:center;">
+                                單月查詢
+                            </button>
+
+                            <button type="button" class="btn btn-info PostAll" style="text-align:center;">
+                                歷史查詢
+                            </button>
+
+                            <button type="button" class="btn btn-danger Print" style="text-align:center;">
+                                轉出EXCEL
+                            </button>
+                        </div>
+                    </div>
+
+
+
+
+
+                    <div>
+                    </div>
+                </p>
+                <div class="container col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table" id="table" name="table">
+                            <tr>
+                                <th>部門</th>
+                                <th>員工編號</th>
+                                <th>員工</th>
+                                <th>理由</th>
+                                <th>內容</th>
+                                <th>本次時數</th>
+                                <th>剩餘時數</th>
+                                <th>總時數</th>
+                                <th>操作人</th>
+                                <th>建立日期</th>
+
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </body>
+    </html>
+    <script>
+    $(document).ready(function () {
+
+
+            $(".Print").click(function () {
+                var a = document.createElement('a');
+                var data_type = 'data:application/vnd.ms-excel';
+                var table_div = document.getElementById('table');
+                var table_html = table_div.outerHTML.replace(/ /g, '%20');
+                a.href = data_type + ', ' + table_html;
+                a.download = 'HRData.xls';
+                a.click();
+                e.preventDefault();
+            });
+
+
+        $(".PostTurnover").click(function () {
+            let Date = $('.date').val();
+            let ChangeDate = Date.replace('-', '/')
+            let ChangeDate2 = ChangeDate.replace('-', '/')
+        });
+
+
+        $(".PostMonth").click(function () {
+            let Date = $('.date').val();
+            let Employee = $('.Employee').val();
+            let ChangeD = Date.substr(0, 5);
+            let ChangeDate1 = ChangeD.replace('-', '/')
+
+            let ChangeDm = Date.substr(5, 2);
+
+            let CheckDate = ChangeDm.substr(0, 1);
+            let DateTotal = "";
+            //alert(ChangeDate1);
+            //alert(ChangeDm);
+            //alert(CheckDate);
+            if (CheckDate == '0') {
+                ChangeDm = ChangeDm.replace('0', '')
+                DateTotal = ChangeDate1 + ChangeDm
+           /*     alert(DateTotal);*/
+            } else {
+                DateTotal = ChangeDate1 + ChangeDm
+              /*  alert(DateTotal);*/
+            }
+                $.ajax({
+                    url: "@Url.Action("HistoryDataBackM")",
+                    type: 'POST',
+                    data: {
+                        Employee: Employee,
+                        Date: DateTotal,
+                    },
+                    dataType: "json",
+                    error: function (xhr) {
+                        alert('帶入失敗');
+                    },
+                    success: function (response) {
+
+                        const l = response.length;
+                        if (l <= 0) { sweetAlert("哎呦……", "No Data！", "error") } else {
+                            $("#table").empty();
+                            let Title = "<tr><th>部門</th><th>員工編號</th><th>員工</th><th>理由</th><th>內容</th><th>本次時數</th><th>剩餘時數</th><th>總時數</th><th>操作人</th> <th>建立日期</th></tr>"
+                            $("#table").append(Title);
+
+
+
+                            for (var i = 0; i < l; i++) {
+                                let D = response[i].Depart;
+                                let ID = response[i].EmpID;
+                                let C = response[i].CreatePeople;
+                                let CD = response[i].CreateDate;
+                                let Na = response[i].EmpName;
+                                let R = response[i].Reason;
+                                let Rc = response[i].ReasonContext;
+                                let RH = response[i].ReasonHours;
+                                let HH = response[i].HistoryHours;
+                                let TH = response[i].TotoalHours;
+                                console.log(D + ID + C + CD + Na + R + Rc + RH + HH + TH);
+
+
+                                let Main = "<tr><td>  " + D + "  </td><td>" + ID + " </td><td>" + Na + "</td><td>" + R + "</td><td>" + Rc + "</td><td>" + RH + "</td><td>" + HH + "</td><td>" + TH + "</td><td>" + C + "</td><td>" + CD + "</td></tr>"
+                                $("#table").append(Main);
+
+                            }
+                        }
+
+                    }
+
+                });
+
+            });
+
+
+    $(".PostAll").click(function () {
+        let Employee = $('.Employee').val();
+         $.ajax({
+            url: "@Url.Action("HistoryDataBack")",
+            type: 'POST',
+            data: {
+                Employee: Employee,
+            },
+            dataType: "json",
+            error: function (xhr) {
+                alert('帶入失敗');
+            },
+             success: function (response) {
+                 $("#table").empty();
+                 const l = response.length;
+
+                 let Title = "<tr><th>部門</th><th>員工編號</th><th>員工</th><th>理由</th><th>內容</th><th>本次時數</th><th>剩餘時數</th><th>總時數</th><th>操作人</th> <th>建立日期</th></tr>"
+                 $("#table").append(Title);
+
+
+
+                 for (var i = 0; i < l; i++) {
+                     let D = response[i].Depart;
+                     let ID = response[i].EmpID;
+                     let C = response[i].CreatePeople;
+                     let CD = response[i].CreateDate;
+                     let Na = response[i].EmpName;
+                     let R = response[i].Reason;
+                     let Rc = response[i].ReasonContext;
+                     let RH = response[i].ReasonHours;
+                     let HH = response[i].HistoryHours;
+                     let TH = response[i].TotoalHours;
+                     console.log(D + ID + C + CD + Na + R + Rc + RH + HH + TH);
+
+
+                     let Main = "<tr><td>  " + D + "  </td><td>" + ID + " </td><td>" + Na + "</td><td>" + R + "</td><td>" + Rc + "</td><td>" + RH + "</td><td>" + HH + "</td><td>" + TH + "</td><td>" + C + "</td><td>" + CD + "</td></tr>"
+                     $("#table").append(Main);
+
+                 }
+
+             }
+
+        });
+    });
+
+
+
+        $.ajax({
+            url: "@Url.Action("SelectDeaprt")",
+            type: 'POST',
+            data: {
+                Dept: "test",
+            },
+            dataType: "json",
+            error: function (xhr) {
+                alert('帶入失敗');
+            },
+            success: function (response) {
+
+                let i = response.length;
+
+                let myselect = $('.Depart');
+                for (var ii = 0; ii < i; ii++) {
+                    let Dept = response[ii].Department
+                    myselect.append($('<option></option>').val(Dept).html(Dept));
+                }
+
+                }
+
+
+
+        });
+
+    $(".Depart").change(function () {
+        let PostDept = $('.Depart').val();
+          $.ajax({
+            url: "@Url.Action("SelectOpEmployee")",
+            type: 'POST',
+            data: {
+                Dept: PostDept,
+            },
+            dataType: "json",
+            error: function (xhr) {
+                alert('帶入失敗');
+            },
+            success: function (response) {
+                jQuery(".Employee").empty();
+                let i2 = response.length;
+                let myselect = $('.Employee');
+                for (var ii = 0; ii < i2; ii++) {
+                    let Empt = response[ii].EmpName
+                    myselect.append($('<option></option>').val(Empt).html(Empt));
+                }
+
+
+            }
+
+
+
+              });
+
+
+        });
+
+
+
+
+ });
+
+
+    </script>

@@ -1,0 +1,175 @@
+﻿@model ChugenTocc.Models.ORInformation
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <title>ORInformation</title>
+</head>
+<body>
+    @using (Html.BeginForm("ORPaPost", "Home", FormMethod.Post))
+ 
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>ORInformation</h4>
+            <hr />
+            <div>
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.PaintName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.PaintName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PaintName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.PaintNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.PaintNumber, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PaintNumber, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Context, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.Context, new SelectList(new string[] { "手術等待中", "手術進行中", "手術完成-恢復中" }), "------請選擇狀態------", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Context, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control Time", @name = "Time", @readonly = "readonly", @Value = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") } })
+                    @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+    <table class="table table-striped table-bordered table" id="table" name="table">
+        <tr>
+            <th>病歷編號</th>
+            <th>患者姓名</th>
+            <th>手術狀況</th>
+            <th>手術日期</th>
+            <th>編輯</th>
+            <th>刪除</th>
+        </tr>
+
+
+    </table>
+
+
+</body>
+</html>
+<script>
+    $(document).ready(function () {
+         $.ajax({
+            url: "@Url.Action("ViewOrPa")",
+            type: 'POST',
+            data: {
+                test: 'test',
+            },
+            dataType: "json",
+            error: function (xhr) {
+                alert('Ajax request 發生錯誤');
+            },
+            success: function (response) {
+
+
+
+                let Item = response.length;
+                for (var i = 0; i < Item; i++) {
+                    let PaId = response[i].id;
+                    let PaName = response[i].PaintName;
+                    let PaNum = response[i].PaintNumber;
+                    let PaCon = response[i].Context;
+                    let PaDate = response[i].Date;
+
+                    let Main = "<tr><td>" + PaNum + " </td><td>" + PaName + "</td><td>" + PaCon + " </td><td>" + PaDate + " </td><td><input type='button' class='btn btn-success edit' id= " + PaId + " name='edit'   value='編輯'></td><td><input type='button' class='btn btn-danger delete' id= " + PaId + " name='edit'   value='刪除'></td>/tr>"
+                    $(".table").append(Main);
+
+
+                }
+            }
+         });
+
+
+
+
+         $(".table").on("click", ".delete", function () {
+            let DeleteId = this.id
+            $(this).parent().parent().remove();
+                   $.ajax({
+                    url: "@Url.Action("DeOrInfo")",
+                    type: 'POST',
+                    data: {
+                        DeleteId: DeleteId,
+                    },
+                    dataType: "json",
+                    error: function (xhr) {
+                        swal("刪除成功", "ok!", "success")
+
+                    },
+                       success: function (response) {
+
+                           swal("刪除成功","ok!", "success")
+                           }
+
+
+           });
+         });
+
+        $(".table").on("click", ".edit", function () {
+            let EditId = this.id
+        
+                   $.ajax({
+                    url: "@Url.Action("EditOrInfo")",
+                    type: 'POST',
+                    data: {
+                        EditId: EditId,
+                    },
+                    dataType: "json",
+                    error: function (xhr) {
+                       
+
+                    },
+                       success: function (response) {
+
+                           $(location).attr('href', 'EditOrInfo');
+                           }
+
+
+           });
+         });
+
+
+        
+
+     });
+</script>

@@ -1,0 +1,90 @@
+﻿@model ChugenTocc.Models.EmployeeToccTable
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ToccView</title>
+</head>
+<body>
+    <div>
+        <h4>EmployeeToccTable</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Departmen)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Departmen)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.EmployeeNumber)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.EmployeeNumber)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Time)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Time)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Crowd)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Crowd)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Place)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Place)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Temperature)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Temperature)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Symptom)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Symptom)
+            </dd>
+    @ViewData["test"]
+        </dl>
+    </div>
+    <p>
+
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

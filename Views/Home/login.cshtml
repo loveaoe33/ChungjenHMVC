@@ -1,0 +1,36 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/Content/style.css">
+    <title>login</title>
+</head>
+<body>
+    <form method="post" action="logincheck" class="login">
+        <p>
+            <label for="login">帳號:</label>
+            <input type="text" name="login" id="login" value="Admin">
+        </p>
+
+        <p>
+            <label for="password">密碼:</label>
+            <input type="password" name="password" id="password" value="">
+        </p>
+
+        <p class="login-submit">
+            <button type="submit" class="login-button">Login</button>
+        </p>
+
+        <p class="forgot-password"><a href="index.html">Forgot your password?</a></p>
+    </form>
+
+
+    </section>
+</body>
+</html>

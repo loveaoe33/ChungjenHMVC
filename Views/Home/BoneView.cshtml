@@ -1,0 +1,190 @@
+﻿
+@{
+    ViewBag.Title = "BoneView";
+    Layout = "~/Views/Shared/BoneLaout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>BoneView</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/TableExport/5.2.0/js/tableexport.min.js" integrity="sha512-XmZS54be9JGMZjf+zk61JZaLZyjTRgs41JLSmx5QlIP5F+sSGIyzD2eJyxD4K6kGGr7AsVhaitzZ2WTfzpsQzg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width" />
+    <title>SelectHistory</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="/Content/bootstrap-datetimepicker.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/locale/zh-tw.js"></script>
+    <title>TurnoverPage</title>
+</head>
+<body>
+
+    <div class="container col-md-12">
+
+        <h2 class="text-center mt-12 mb-12"></h2>
+
+    </div></P>
+
+
+    <div class="container col-md-12">
+
+    </div></P><br><br><br><br>
+
+    <div class="container  col-md-5">
+        <div class="row">
+            <form action="/Home/ImgUpload" method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-2">
+                            <label>病歷號碼</label>
+                        </div>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control PaID" name='PaNumber' readonly="readonly"><br><br>
+
+
+                        </div>
+                        <div class="col-md-2">
+                            <label>患者姓名</label>
+                        </div>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control PaName" name='PaName'readonly="readonly"><br><br>
+                        </div>
+                        <div class="col-md-2">
+                            <label>上傳日期</label>
+                        </div>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control PostDate" value="" name='PaDate'readonly="readonly"><br><br>
+                        </div>
+
+
+
+                        <div class="col-md-2">
+                            <label>操作人</label>
+                        </div>
+                        <div class="col-md-10">
+                            <select class="form-select" name='PaXrayer'aria-label="Default select example">
+     
+                                <option value="孫毅博">孫翊博</option>
+                                <option value="林豪毅">林豪毅</option>
+     
+                            </select><br><br>
+                        </div>
+
+                        <div class="col-md-10">
+                            <input type="text" class="form-control loadSession" style="display: none" value="@Session["loadPa"]" readonly="readonly"><br><br>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+                <label class="form-label" for="customFile">輸入骨密圖片</label>
+                <input type="file" class="form-control" multiple="multiple" name="files" accept=".jpg" /></P>
+                <input type="submit" class="btn btn-danger" value="submit" />
+            </form>
+            <img onmousewheel='return imgzoom(this)' download="filename.jpg" src="~/img/S__13631798.jpg" />
+            @if (Session["ImgAlert"] != null)
+            {
+                <H1>@Session["ImgAlert"]</H1>
+
+            }
+        </div>
+    </div>
+    <div class="container col-md-1">
+
+    </div>
+    <div class="container  col-md-6">
+        <div class="row">
+       
+            <table class="table table-striped LogTable">
+
+            </table>
+
+        </div>
+    </div>
+</body>
+</html>
+<script>
+
+    function imgzoom(o) {
+        var zoom = parseInt(o.style.zoom, 10) || 100;
+        zoom += event.wheelDelta / 12;
+        if (zoom > 0) o.style.zoom = zoom + '%';
+        return false;
+    }
+
+    $(document).ready(function () {
+        let PostId = $(".loadSession").val();
+        var d = new Date();
+        var month = d.getMonth() + 1;
+        var day = d.getDate();
+        var OutDate = d.getFullYear() + '/' + (month < 10 ? '0' : '') + month + '/' + (day < 10 ? '0' : '') + day;
+        $(".PostDate").val(OutDate);
+         $.ajax({
+                    url: "@Url.Action("PostIdBack")",
+                    type: 'POST',
+                    data: {
+                        PostId: PostId,
+
+                    },
+                    dataType: "json",
+                    error: function (xhr) {
+                        alert('帶入失敗');
+                    },
+             success: function (response) {
+                 console.log(response);
+                        $(".PaName").val(response[0].PaName);
+                        $(".PaID").val(response[0].PaID);
+
+
+                        }
+
+         });
+
+
+           $.ajax({
+                    url: "@Url.Action("LogBack")",
+                    type: 'POST',
+                    data: {
+                        PostDate: OutDate,
+
+                    },
+                    dataType: "json",
+                    error: function (xhr) {
+                        alert('帶入失敗');
+                    },
+               success: function (response) {
+                   let Title = "<tr><th>資料編號</th><th>病歷號碼</th><th>骨密報告</th><th>上傳日期</th><th>上傳者</th></tr>"
+                   $(".LogTable").append(Title);
+                   const l = response.length;
+                   for (var i = 0; i < l; i++) {
+                       let Dint = response[i].int;
+                       let PaID =response[i].PaID;
+                       let Report = response[i].ImagePName;
+                       let UpDate = response[i].ImgCreateDate;
+                       let UpP = response[i].CreatePeople;
+                       
+                     
+
+                       let Main = "<tr><td>  " + Dint + "  </td><td>" + PaID + " </td><td>" + Report + "</td><td>" + UpDate + "</td><td>" + UpP + "</td></tr>"
+                       $(".LogTable").append(Main);
+
+                   }
+               }
+
+           });
+
+
+    });
+</script>

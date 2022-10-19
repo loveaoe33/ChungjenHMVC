@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="EmployeeToccTableStoreContainer" CdmEntityContainer="TOCCEntities2">
+    <EntitySetMapping Name="BackupORInformation">
+      <EntityTypeMapping TypeName="EmployeeToccTable.BackupORInformation">
+        <MappingFragment StoreEntitySet="BackupORInformation">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="BPaintName" ColumnName="BPaintName" />
+          <ScalarProperty Name="BPaintNumber" ColumnName="BPaintNumber" />
+          <ScalarProperty Name="BContext" ColumnName="BContext" />
+          <ScalarProperty Name="BDate" ColumnName="BDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmployeeToccTable">
+      <EntityTypeMapping TypeName="EmployeeToccTable.EmployeeToccTable">
+        <MappingFragment StoreEntitySet="EmployeeToccTable">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Departmen" ColumnName="Departmen" />
+          <ScalarProperty Name="EmployeeNumber" ColumnName="EmployeeNumber" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+          <ScalarProperty Name="Crowd" ColumnName="Crowd" />
+          <ScalarProperty Name="Place" ColumnName="Place" />
+          <ScalarProperty Name="Temperature" ColumnName="Temperature" />
+          <ScalarProperty Name="Symptom" ColumnName="Symptom" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ORInformation">
+      <EntityTypeMapping TypeName="EmployeeToccTable.ORInformation">
+        <MappingFragment StoreEntitySet="ORInformation">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="PaintName" ColumnName="PaintName" />
+          <ScalarProperty Name="PaintNumber" ColumnName="PaintNumber" />
+          <ScalarProperty Name="Context" ColumnName="Context" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

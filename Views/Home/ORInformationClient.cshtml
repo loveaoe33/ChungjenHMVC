@@ -1,0 +1,126 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+    <title>ORInformationClient</title>
+</head>
+<body>
+    <div>
+        <img src="~/img/Chugjen.png" width="1000" height="200" style="display:block;margin:auto;"></a>
+    </div>
+    <div class="all" id="all">
+
+        @*<div class="marquee">
+                <div>A Million Reasons To Love Web Development</div>
+            </div>
+
+            <div class="marquee">
+                <div>A Million Reasons To Love Web Development</div>
+            </div>
+            <div class="marquee">
+                <div>A Million Reasons To Love Web Development</div>
+            </div>*@
+
+    </div>
+    <input type="button" class="test" id="test" style="display:none;">
+    @*<div align="center"><iframe width="1460" height="1015" src="http://www.youtube.com/embed/zNESDscyCmk?mute=1&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> </div>*@
+@*<div align="center"><video autoplay="autoplay" width="1460" height="1015" controls><source src="~/Movie/movie1.mp4" type="video/mp4"></video></div>*@
+</body>
+</html>
+
+<script>
+     $(document).ready(function () {
+         AJAX()
+         $(".test").click(function () {
+             AJAX();
+         });
+         function AJAX() {
+             $.ajax({
+                 url: "@Url.Action("ORInformationClientPost")",
+                 type: 'POST',
+                 data: {
+                     test: 'test',
+                 },
+                 dataType: "json",
+                 error: function (xhr) {
+                     alert('Ajax request 發生錯誤');
+                 },
+                 success: function (response) {
+                     $(".marquee").remove();
+ 
+                     const l = response.length;
+                     for (var i = 0; i < l; i++) {
+                         let Name = response[i].PaintName;
+                         let Number = response[i].PaintNumber;
+                         let Context = response[i].Context;
+                         let Date = response[i].Date;
+                         var NaRR = Name.substr(1, 1)
+                         let CN = Name.replace(NaRR, 'O')
+
+                         const parent = document.getElementById('all');
+                         const child = document.createElement('div');
+                         child.setAttribute("class", "marquee");
+                         child.innerHTML = "<div id='con' style='color: black;font-weight:bold;' >" + "患者:" + CN + "\n" + "目前狀態:" + Context  + "." + "</div >"
+                         parent.appendChild(child);
+                         
+                     }
+                     window.setTimeout(function () {
+                         document.getElementById('test').click();
+                     }, 20000);
+                 }
+             });
+         }
+        
+        
+     });
+
+   
+    function Update() {
+        AJAX();
+    }
+
+
+    function AJAX2() {
+    }
+</script>
+<style>
+    body {
+        /*background-image: url("../img/bakc2.jpg");*/
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .marquee {
+        width: 100%;
+        text-transform: uppercase;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+        .marquee div {
+            font-size: 7rem;
+            font-family: verdana;
+            padding-left: 100%;
+            display: inline-block;
+            animation: animate 20s linear infinite;
+        }
+
+    @@keyframes animate {
+        100% {
+            transform: translate(-100%, 0);
+        }
+    }
+</style>

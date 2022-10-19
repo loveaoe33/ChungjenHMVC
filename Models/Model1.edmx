@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TOCCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BackupORInformation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BPaintName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="BPaintNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="BContext" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="BDate" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmployeeToccTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Departmen" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmployeeNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Time" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Crowd" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Place" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Temperature" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Symptom" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ORInformation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaintName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PaintNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Context" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Date" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="TOCCModelStoreContainer">
+          <EntitySet Name="BackupORInformation" EntityType="Self.BackupORInformation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployeeToccTable" EntityType="Self.EmployeeToccTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ORInformation" EntityType="Self.ORInformation" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TOCCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="EmployeeToccTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Departmen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EmployeeNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Time" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Crowd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Place" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Temperature" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Symptom" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="TOCCEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="EmployeeToccTable" EntityType="Self.EmployeeToccTable" />
+          <EntitySet Name="ORInformation" EntityType="TOCCModel.ORInformation" />
+          <EntitySet Name="BackupORInformation" EntityType="TOCCModel.BackupORInformation" />
+        </EntityContainer>
+        <EntityType Name="ORInformation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaintName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PaintNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Context" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="BackupORInformation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BPaintName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BPaintNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BContext" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BDate" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TOCCModelStoreContainer" CdmEntityContainer="TOCCEntities1">
+          <EntitySetMapping Name="EmployeeToccTable">
+            <EntityTypeMapping TypeName="TOCCModel.EmployeeToccTable">
+              <MappingFragment StoreEntitySet="EmployeeToccTable">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Departmen" ColumnName="Departmen" />
+                <ScalarProperty Name="EmployeeNumber" ColumnName="EmployeeNumber" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Crowd" ColumnName="Crowd" />
+                <ScalarProperty Name="Place" ColumnName="Place" />
+                <ScalarProperty Name="Temperature" ColumnName="Temperature" />
+                <ScalarProperty Name="Symptom" ColumnName="Symptom" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ORInformation">
+            <EntityTypeMapping TypeName="TOCCModel.ORInformation">
+              <MappingFragment StoreEntitySet="ORInformation">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Context" ColumnName="Context" />
+                <ScalarProperty Name="PaintNumber" ColumnName="PaintNumber" />
+                <ScalarProperty Name="PaintName" ColumnName="PaintName" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BackupORInformation">
+            <EntityTypeMapping TypeName="TOCCModel.BackupORInformation">
+              <MappingFragment StoreEntitySet="BackupORInformation">
+                <ScalarProperty Name="BDate" ColumnName="BDate" />
+                <ScalarProperty Name="BContext" ColumnName="BContext" />
+                <ScalarProperty Name="BPaintNumber" ColumnName="BPaintNumber" />
+                <ScalarProperty Name="BPaintName" ColumnName="BPaintName" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

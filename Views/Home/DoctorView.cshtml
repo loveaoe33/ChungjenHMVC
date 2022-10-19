@@ -1,0 +1,244 @@
+﻿
+@{
+    ViewBag.Title = "DoctorView";
+    Layout = "~/Views/Shared/BoneLaout.cshtml";
+}
+
+
+<div></div>
+<br>
+<div></div>
+<br>
+<div></div>
+<br>
+<html>
+<head>
+    <!-- jQuery v1.9.1 -->
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <!-- DataTables v1.10.16 -->
+    <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    <button type="button" class="btn btn-primary Upload">Reload</button></P>
+    <table id="table_id" cellspacing="0px" width="100%" valign="middle" class="display">
+        <thead>
+            @*<tr>
+                    <th>病歷號碼</th>
+                    <th>病患姓名</th>
+                    <th>骨密報告</th>
+                    <th>骨密日期</th>
+
+                </tr>*@
+        </thead>
+        <tbody>
+            @*<tr>
+                    <td>兆豐銀行</td>
+                    <td>$300 產品（限量8萬名）<br>最高5千抽獎</td>
+                    <td>期限綁定台灣Pay/信用卡，可享一次抽獎，最高獎金5千元(110/12/31前)</td>
+                    <td>期限綁定台灣Pay/信用卡，可享一次抽獎，最高獎金5千元(110/12/31前)</td>
+                    <td>期限綁定台灣Pay/信用卡，可享一次抽獎，最高獎金5千元(110/12/31前)</td>
+                </tr>*@
+
+        </tbody>
+    </table>
+
+    <div id="outerdiv" style="position:fixed;top:0;left:0;background:rgba(0,0,0,0.7);z-index:2;width:100%;height:100%;display:none;">
+        <div id="innerdiv" style="position:absolute;">
+            <img id="bigimg" onmousewheel="return imgzoom(this)"  style="border:5px solid #fff;" src="" />
+        </div>
+    </div>
+    <input type="button" class="test" id="test" style="display:none;">
+
+</body>
+</html>
+
+<script>
+    $(document).ready(function () {
+
+        var Data = [{}];
+        AjaxData()
+
+        
+
+
+        function AjaxData()
+        {
+            $.ajax({
+            url: "@Url.Action("SelectXrPa")",
+            type: 'POST',
+            data: {
+                XrPa: "E0010",
+            },
+            dataType: "json",
+            error: function (xhr) {
+                alert('帶入失敗');
+            },
+              success: function (response) {
+                  
+                  $(".display").DataTable({
+                      destroy: true,
+                      "data": response,
+                      "columns": [ //列的標題一般是從DOM中讀取（你還可以使用這個屬性為表格創建列標題)
+
+                          { data: 'int', title: "編號" },
+                          { data: 'PaID', title: "病歷號碼" },
+                          { data: 'PaName', title: "姓名" },
+ 
+
+                          { data: 'ImgCreateDate', title: "報告日期" },
+                          
+                          {
+                              data: 'ImagePName', title: "報告",
+                              'render': function (ImagePName) {
+                                  return "<img height='100' width='100' class='pimg' onmousewheel='return imgzoom(this)'  src=/img/" + ImagePName + ">";
+
+                              }
+
+                          },
+
+                                                  {
+                                                      data: 'ImagePName', title: "DownLoad",
+                              'render': function (ImagePName) {
+                                  return "<input type='button'  value='DownLoad' class='btn btn-danger " + ImagePName + "'  id=" + ImagePName + ">";
+
+                              }
+                          },
+
+                      ],
+                      language: {
+                          
+                          "lengthMenu": "顯示 _MENU_ 筆資料",
+                          "sProcessing": "處理中...",
+                          "sZeroRecords": "没有匹配结果",
+                          "sInfo": "目前有 _MAX_ 筆資料",
+                          "sInfoEmpty": "目前共有 0 筆紀錄",
+                          "sInfoFiltered": " ",
+                          "sInfoPostFix": "",
+                          "sSearch": "搜尋:",
+                          "sUrl": "",
+                          "sEmptyTable": "尚未有資料紀錄存在",
+                          "sLoadingRecords": "載入資料中...",
+                          "sInfoThousands": ",",
+                          "oPaginate": {
+                              "sFirst": "首頁",
+                              "sPrevious": "上一頁",
+                              "sNext": "下一頁",
+                              "sLast": "末頁"
+                          },
+                          "order": [[0, "desc"]],
+                          "oAria": {
+                              "sSortAscending": ": 以升序排列此列",
+                              "sSortDescending": ": 以降序排列此列"
+                          }
+                      },
+
+
+                  });
+                 
+                }
+       
+           });
+
+        }
+
+
+        function Reload(x)
+        {
+            if (x == 1)
+            {
+                window.setTimeout(function () {
+                    document.getElementById('test').click();
+                }, 10000);
+            } else if (x==0)
+            {
+                return
+            }
+        };
+
+        $(function () {
+            $(".display").on("click", ".pimg", function () {
+                var _this = $(this);//將當前的pimg元素作為_this傳入函式
+                imgShow("#outerdiv", "#innerdiv", "#bigimg", _this);
+            });
+        });
+
+
+
+        $(".Upload").click(function () {
+            AjaxData()
+        });
+
+
+      
+          
+function imgzoom(o) {
+  var zoom=parseInt(o.style.zoom, 10)||100;
+  zoom+=event.wheelDelta/12;
+  if (zoom>0) o.style.zoom=zoom+'%';
+  return false;
+}
+
+
+        function imgShow(outerdiv, innerdiv, bigimg, _this) {
+     
+       
+            var src = _this.attr("src");//獲取當前點選的pimg元素中的src屬性
+            $(bigimg).attr("src", src);//設定#bigimg元素的src屬性
+
+            /*獲取當前點選圖片的真實大小，並顯示彈出層及大圖*/
+            $("<img/>").attr("src", src).load(function () {
+                var windowW = $(window).width();//獲取當前視窗寬度
+                var windowH = $(window).height();//獲取當前視窗高度
+                var realWidth = this.width;//獲取圖片真實寬度
+                var realHeight = this.height;//獲取圖片真實高度
+                var imgWidth, imgHeight;
+                var scale = 1.4;//縮放尺寸，當圖片真實寬度和高度大於視窗寬度和高度時進行縮放
+
+                if (realHeight > windowH * scale) {//判斷圖片高度
+                    imgHeight = windowH * scale;//如大於視窗高度，圖片高度進行縮放
+                    imgWidth = imgHeight / realHeight * realWidth;//等比例縮放寬度
+                    if (imgWidth > windowW * scale) {//如寬度扔大於視窗寬度
+                        imgWidth = windowW * scale;//再對寬度進行縮放
+                    }
+                } else if (realWidth > windowW * scale) {//如圖片高度合適，判斷圖片寬度
+                    imgWidth = windowW * scale;//如大於視窗寬度，圖片寬度進行縮放
+                    imgHeight = imgWidth / realWidth * realHeight;//等比例縮放高度
+                } else {//如果圖片真實高度和寬度都符合要求，高寬不變
+                    imgWidth = realWidth;
+                    imgHeight = realHeight;
+                }
+                $(bigimg).css("width", imgWidth);//以最終的寬度對圖片縮放
+
+                var w = (windowW - imgWidth) / 2;//計算圖片與視窗左邊距
+                var h = (windowH - imgHeight) / 6;//計算圖片與視窗上邊距
+                $(innerdiv).css({ "top": h, "left": w });//設定#innerdiv的top和left屬性
+                $(outerdiv).fadeIn("fast");//淡入顯示#outerdiv及.pimg
+            });
+
+            $(outerdiv).click(function () {//再次點選淡出消失彈出層
+                $(this).fadeOut("fast");
+                Reload()
+            });
+        }
+
+
+    });
+
+    let Dbtn = document.querySelector('ImDbtn')
+    Dbtn.onclick = function ()
+    {
+        download()
+    }
+    function download(link, filename)
+    {
+        let a = document.createElement('a')
+        a.href = link
+        a.download = filename
+        a.dispatchEvent(new MouseEvent('click'))
+    }
+
+</script>

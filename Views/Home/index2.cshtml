@@ -1,0 +1,291 @@
+﻿@model ChugenTocc.Models.EmployeeToccTable
+
+
+@{
+    Layout = null;
+    var list = ViewBag.List;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+    <title>Index</title>
+
+</head>
+<body>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+    @using (Html.BeginForm("Creat", "Home", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>EmployeeToccTable</h4>
+            <hr />
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            重仁骨科醫院員工TOCC紀錄
+                        </div>
+                        <div class="modal-body">
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Departmen, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownListFor(model => model.Departmen, new SelectList(new string[] { "管理部", "醫師", "護理部", "資訊部", "醫檢部", "放射部", "清潔部", "行政部", "藥部", "醫務管理部", "復健部" }), "------請選擇您部門------", htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Departmen, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.EmployeeNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.EmployeeNumber, new { htmlAttributes = new { @class = "form-control", placeholder = "員工編號" } })
+                                    @Html.ValidationMessageFor(model => model.EmployeeNumber, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", placeholder = "姓名" } })
+                                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Time, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Time, new { htmlAttributes = new { @class = "form-control Time", @readonly = "readonly", @name = "Time", @Value = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss") } })
+                                    @Html.ValidationMessageFor(model => model.Time, "", new { @class = "text-danger" })
+                                    <div class="form-check">
+                                        <input class="Timecheck" name="Timecheck" type="checkbox" value="" id="Timecheck">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            解除時間
+                                        </label>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Crowd, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.DropDownListFor(model => model.Crowd, new SelectList(new string[] { "是", "否", "不確定" }), "------請問您是否曾經進行群聚活動------", htmlAttributes: new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Place, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Place, new { htmlAttributes = new { @class = "form-control", placeholder = "是否去過感染地  例如:台北、萬華...沒有則打無" } })
+                                    @Html.ValidationMessageFor(model => model.Place, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Temperature, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Temperature, new { htmlAttributes = new { @class = "form-control", placeholder = "溫度" } })
+                                    @Html.ValidationMessageFor(model => model.Temperature, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Symptom, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.Symptom, new { htmlAttributes = new { @class = "form-control", placeholder = "如有症狀請寫出 例如:發燒、味覺失調、咳嗽等等....否則寫無" } })
+                                    @Html.ValidationMessageFor(model => model.Symptom, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+
+
+
+    <div class="container">
+
+        <h2 class="text-center mt-4 mb-4">TOCC Crud Application</h2>
+
+
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" style="text-align:center;">
+                        新增資料
+                    </button>
+
+              
+
+
+                    <button type="button" class="btn btn-danger logout" style="text-align:center;">
+                        登出
+                    </button>
+                    <button type="button" class="btn btn-danger check" disabled="disabled" style="text-align:center;">
+                        考勤查詢
+                    </button>
+
+                    <div class="col">院內登記資料</div>
+                    <div class="col text-right">
+
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered" id="table" name="table">
+                        <tr>
+                            <th>部門</th>
+                            <th>員工編號</th>
+                            <th>姓名</th>
+                            <th>登記時間</th>
+                            <th>是否群聚</th>
+                            <th>有無去過感染地區</th>
+                            <th>體溫</th>
+                            <th>症狀</th>
+                        <tr class='bg-danger'>
+                     
+                        </tr>
+
+                    </table>
+                </div>
+                <div>
+
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+<style>
+    .pagination li a {
+        position: relative;
+        display: block;
+        padding: .5rem .75rem;
+        margin-left: -1px;
+        line-height: 1.25;
+        color: #007bff;
+        background-color: #fff;
+        border: 1px solid #dee2e6;
+    }
+
+    .pagination li.active a {
+        z-index: 1;
+        color: #fff;
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+</style>
+
+
+<script>
+    $(document).ready(function () {
+        $(".logout").click(function () {
+             location.href = '@Url.Action("loginout")'
+        });
+        $.ajax({
+            url: "@Url.Action("getdata")",
+            type: 'POST',
+            data: {
+                test: 'test',
+            },
+            dataType: "json",
+            error: function (xhr) {
+                alert('Ajax request 發生錯誤');
+            },
+            success: function (response) {
+
+
+                const l = response.length;
+                for (var i = 0; i < l; i++) {
+                    let I = response[i].Id
+                    let D = response[i].Departmen;
+                    let N = response[i].EmployeeNumber;
+                    let Na = response[i].Name;
+                    let T = response[i].Time;
+                    let P = response[i].Place;
+                    let C = response[i].Crowd;
+                    let Tem = response[i].Temperature;
+                    let S = response[i].Symptom;
+                    if (Tem >= 37) {
+                        alert('注意人員: ' + Na + ' 體溫過高')
+                        let Main = "<tr class='bg-danger'><td>  " + D + "  </td><td>" + N + " </td><td>" + Na + "</td><td>" + T + "</td><td>" + C + " </td><td>" + P + "  </td><td>" + Tem + "</td><td>" + S + "</td></tr>"
+                        $("#table").append(Main);
+                    } else {
+                        let Main = "<tr><td>  " + D + "  </td><td>" + N + " </td><td>" + Na + "</td><td>" + T + "</td><td>" + C + " </td><td>" + P + "  </td><td>" + Tem + "</td><td>" + S + "</td></tr>"
+                        $("#table").append(Main);
+                    }
+
+                }
+            }
+
+        });
+        $('input[type="checkbox"]').click(function () {
+            if ($('.Timecheck').prop('checked') == true) {
+                alert('補登資料格式請確實');
+
+                $("#Time").attr("readonly", false);
+            } else {
+
+                $("#Time").attr("readonly", true);
+            }
+        });
+    });
+
+
+
+
+</script>

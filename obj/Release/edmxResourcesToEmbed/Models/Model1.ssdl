@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TOCCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="BackupORInformation">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BPaintName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="BPaintNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="BContext" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="BDate" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EmployeeToccTable">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Departmen" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="EmployeeNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Time" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Crowd" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Place" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Temperature" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Symptom" Type="varchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ORInformation">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PaintName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PaintNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="Context" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Date" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="TOCCModelStoreContainer">
+    <EntitySet Name="BackupORInformation" EntityType="Self.BackupORInformation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeeToccTable" EntityType="Self.EmployeeToccTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ORInformation" EntityType="Self.ORInformation" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

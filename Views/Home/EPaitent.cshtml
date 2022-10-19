@@ -1,0 +1,43 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>EPaitent</title>
+
+</head>
+<body>
+    <div id="pdf-container"></div>
+</body>
+</html>
+
+<script>
+    PDFJS.getDocument('https://cdn.rawgit.com/mozilla/pdf.js/master/web/compressed.tracemonkey-pldi-09.pdf').then(function(pdf) {
+    for (var pageNum = 1; pageNum < pdf.numPages; ++pageNum) {
+    pdf.getPage(pageNum).then(function(page) {
+    // you can now use *page* here
+
+    var scale = 1.5;
+    var viewport = page.getViewport(1);
+
+    var canvas = document.createElement('canvas');
+    var context = canvas.getContext('2d');
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+
+    var renderContext = {
+    canvasContext: context,
+    viewport: viewport
+    };
+    page.render(renderContext);
+
+    document.getElementById('pdf-container').appendChild(canvas);
+    });
+    }
+    })
+</script>

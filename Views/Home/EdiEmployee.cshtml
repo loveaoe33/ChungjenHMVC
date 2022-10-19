@@ -1,0 +1,128 @@
+﻿@model ChugenTocc.Models.EmployeeAcount
+
+@{
+    ViewBag.Title = "EdiEmployee";
+    Layout = "~/Views/Shared/HRLaout.cshtml";
+}
+<meta name="viewport" content="width=device-width" />
+<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<meta name="viewport" content="width=device-width" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="@Url.Content("~/Scripts/jquery-1.4.4.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<div></div>
+<br>
+<div></div>
+<div></div>
+<br>
+<br>
+<h2>EdiEmployee</h2>
+
+@using (Html.BeginForm("InsertEmployeeAcount", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>EmployeeAcount</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Depart, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Depart, new SelectList(new string[] { }), "------請選選擇部門------", htmlAttributes: new { @class = "form-control Depart" })
+                @Html.ValidationMessageFor(model => model.Depart, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EmpID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EmpID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EmpID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EmpName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EmpName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EmpName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CreatDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CreatDate, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @Value = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") } })
+                @Html.ValidationMessageFor(model => model.CreatDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CraetPeople, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CraetPeople, new { htmlAttributes = new { @class = "form-control SessionPeople", @Value = Session["AdminLogin"], @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.CraetPeople, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+    <div>
+        @if (Session["InsertAlert"] != null)
+        {
+            <H1>@Session["InsertAlert"]</H1>
+
+        }
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+<script>
+    $(document).ready(function () {
+
+            $.ajax({
+            url: "@Url.Action("SelectDeaprt")",
+            type: 'POST',
+            data: {
+                test: 'test',
+            },
+            dataType: "json",
+            error: function (xhr) {
+                alert('Ajax request 發生錯誤');
+            },
+            success: function (response) {
+                let i = response.length;
+
+                let myselect = $('#Depart');
+                for (var ii = 0; ii < i; ii++)
+                {
+                    let Dept = response[ii].Department
+                    myselect.append($('<option></option>').val(Dept).html(Dept));
+                }
+
+
+
+            }
+            });
+        function alert()
+        {
+            alert('Insert Sucess!!');
+        }
+
+     });
+
+</script>

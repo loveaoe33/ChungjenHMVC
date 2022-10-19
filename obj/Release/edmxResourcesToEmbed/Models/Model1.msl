@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TOCCModelStoreContainer" CdmEntityContainer="TOCCEntities1">
+    <EntitySetMapping Name="EmployeeToccTable">
+      <EntityTypeMapping TypeName="TOCCModel.EmployeeToccTable">
+        <MappingFragment StoreEntitySet="EmployeeToccTable">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Departmen" ColumnName="Departmen" />
+          <ScalarProperty Name="EmployeeNumber" ColumnName="EmployeeNumber" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+          <ScalarProperty Name="Crowd" ColumnName="Crowd" />
+          <ScalarProperty Name="Place" ColumnName="Place" />
+          <ScalarProperty Name="Temperature" ColumnName="Temperature" />
+          <ScalarProperty Name="Symptom" ColumnName="Symptom" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ORInformation">
+      <EntityTypeMapping TypeName="TOCCModel.ORInformation">
+        <MappingFragment StoreEntitySet="ORInformation">
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Context" ColumnName="Context" />
+          <ScalarProperty Name="PaintNumber" ColumnName="PaintNumber" />
+          <ScalarProperty Name="PaintName" ColumnName="PaintName" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BackupORInformation">
+      <EntityTypeMapping TypeName="TOCCModel.BackupORInformation">
+        <MappingFragment StoreEntitySet="BackupORInformation">
+          <ScalarProperty Name="BDate" ColumnName="BDate" />
+          <ScalarProperty Name="BContext" ColumnName="BContext" />
+          <ScalarProperty Name="BPaintNumber" ColumnName="BPaintNumber" />
+          <ScalarProperty Name="BPaintName" ColumnName="BPaintName" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

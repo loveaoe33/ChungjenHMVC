@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BoneXrayModelStoreContainer" CdmEntityContainer="BoneXrayEntities">
+    <EntitySetMapping Name="BonePa">
+      <EntityTypeMapping TypeName="BoneXrayModel.BonePa">
+        <MappingFragment StoreEntitySet="BonePa">
+          <ScalarProperty Name="int" ColumnName="int" />
+          <ScalarProperty Name="PaID" ColumnName="PaID" />
+          <ScalarProperty Name="PaName" ColumnName="PaName" />
+          <ScalarProperty Name="Context" ColumnName="Context" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Img">
+      <EntityTypeMapping TypeName="BoneXrayModel.Img">
+        <MappingFragment StoreEntitySet="Img">
+          <ScalarProperty Name="int" ColumnName="int" />
+          <ScalarProperty Name="PaID" ColumnName="PaID" />
+          <ScalarProperty Name="ImagePName" ColumnName="ImagePName" />
+          <ScalarProperty Name="ImgRouter" ColumnName="ImgRouter" />
+          <ScalarProperty Name="ImgCreateDate" ColumnName="ImgCreateDate" />
+          <ScalarProperty Name="CreatePeople" ColumnName="CreatePeople" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

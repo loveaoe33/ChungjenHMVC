@@ -1,0 +1,425 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="HRSQLModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--產生期間發現錯誤:
+警告 6013: 資料表/檢視 'HRSQL.dbo.BackupMonth' 未定義主索引鍵，也無法推斷有效的主索引鍵。此資料表/檢視已被排除。如果要使用此實體，您必須檢閱您的結構描述，加入正確的索引鍵，並將它取消註解。
+        <EntityType Name="BackupMonth">
+          <Property Name="Dept" Type="nvarchar(max)" />
+          <Property Name="UserID" Type="nvarchar(max)" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="EnrollID" Type="nvarchar(max)" />
+          <Property Name="Date" Type="nvarchar(max)" />
+          <Property Name="Min" Type="nvarchar(max)" />
+          <Property Name="Mout" Type="nvarchar(max)" />
+          <Property Name="Ain" Type="nvarchar(max)" />
+          <Property Name="Aout" Type="nvarchar(max)" />
+          <Property Name="TimeRecord" Type="nvarchar(max)" />
+          <Property Name="Cheked" Type="nchar" MaxLength="10" />
+          <Property Name="int" Type="int" />
+          <Property Name="Month" Type="nchar" MaxLength="10" />
+        </EntityType>-->
+        <EntityType Name="EmpHours">
+          <Key>
+            <PropertyRef Name="int" />
+          </Key>
+          <Property Name="int" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmpID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmpName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Rhours" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="Dept" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="EmployeeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmployeeId" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmployeeAcount">
+          <Key>
+            <PropertyRef Name="int" />
+          </Key>
+          <Property Name="int" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Depart" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmpID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmpName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreatDate" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CraetPeople" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmployeeHistory">
+          <Key>
+            <PropertyRef Name="int" />
+          </Key>
+          <Property Name="int" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Depart" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmpID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmpName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreateDate" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreatePeople" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Reason" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ReasonContext" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ReasonHours" Type="int" Nullable="false" />
+          <Property Name="HistoryHours" Type="int" Nullable="false" />
+          <Property Name="TotoalHours" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmployeeHR">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmpNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmpName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmpDepart" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HRAdmin">
+          <Key>
+            <PropertyRef Name="int" />
+          </Key>
+          <Property Name="int" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Account" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Depart" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Lev" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HRDepartment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Department" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Record">
+          <Key>
+            <PropertyRef Name="int" />
+          </Key>
+          <Property Name="Dept" Type="nvarchar(max)" />
+          <Property Name="UserID" Type="nvarchar(max)" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="EnrollID" Type="nvarchar(max)" />
+          <Property Name="Date" Type="nvarchar(max)" />
+          <Property Name="Min" Type="nvarchar(max)" />
+          <Property Name="Mout" Type="nvarchar(max)" />
+          <Property Name="Ain" Type="nvarchar(max)" />
+          <Property Name="Aout" Type="nvarchar(max)" />
+          <Property Name="TimeRecord" Type="nvarchar(max)" />
+          <Property Name="Cheked" Type="nvarchar" MaxLength="50" />
+          <Property Name="Marking" Type="nvarchar" MaxLength="50" />
+          <Property Name="int" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RH2">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PNumber" Type="float" />
+          <Property Name="Number" Type="float" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="LDate" Type="nvarchar" MaxLength="255" />
+          <Property Name="ODate" Type="nvarchar" MaxLength="255" />
+          <Property Name="Division" Type="nvarchar" MaxLength="255" />
+          <Property Name="IDcard" Type="nvarchar" MaxLength="255" />
+          <Property Name="Codename" Type="nvarchar" MaxLength="255" />
+          <Property Name="OrderDoctor" Type="nvarchar" MaxLength="255" />
+          <Property Name="Morder" Type="nvarchar" MaxLength="255" />
+          <Property Name="MorderName" Type="nvarchar" MaxLength="255" />
+          <Property Name="StartDate" Type="nvarchar" MaxLength="255" />
+          <Property Name="EndDate" Type="nvarchar" MaxLength="255" />
+          <Property Name="Quantity" Type="float" />
+          <Property Name="Count" Type="nvarchar" MaxLength="255" />
+          <Property Name="Money" Type="float" />
+        </EntityType>
+        <EntityContainer Name="HRSQLModelStoreContainer">
+          <EntitySet Name="EmpHours" EntityType="Self.EmpHours" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployeeAcount" EntityType="Self.EmployeeAcount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployeeHistory" EntityType="Self.EmployeeHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployeeHR" EntityType="Self.EmployeeHR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HRAdmin" EntityType="Self.HRAdmin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HRDepartment" EntityType="Self.HRDepartment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Record" EntityType="Self.Record" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RH2" EntityType="Self.RH2" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HRSQLModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="Dept" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="EmployeeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EmployeeId" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="EmployeeAcount">
+          <Key>
+            <PropertyRef Name="int" />
+          </Key>
+          <Property Name="int" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Depart" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EmpID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EmpName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CraetPeople" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HRAdmin">
+          <Key>
+            <PropertyRef Name="int" />
+          </Key>
+          <Property Name="int" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Account" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Depart" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Lev" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HRDepartment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Record">
+          <Key>
+            <PropertyRef Name="int" />
+          </Key>
+          <Property Name="Dept" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EnrollID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Min" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Mout" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Ain" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Aout" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TimeRecord" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Cheked" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Marking" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="int" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="RH2">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PNumber" Type="Double" />
+          <Property Name="Number" Type="Double" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="LDate" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ODate" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Division" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IDcard" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Codename" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="OrderDoctor" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Morder" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="MorderName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="StartDate" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="EndDate" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Quantity" Type="Double" />
+          <Property Name="Count" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Money" Type="Double" />
+        </EntityType>
+        <EntityContainer Name="HRSQLEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Employee" EntityType="Self.Employee" />
+          <EntitySet Name="EmployeeAcount" EntityType="Self.EmployeeAcount" />
+          <EntitySet Name="HRAdmin" EntityType="Self.HRAdmin" />
+          <EntitySet Name="HRDepartment" EntityType="Self.HRDepartment" />
+          <EntitySet Name="Record" EntityType="Self.Record" />
+          <EntitySet Name="RH2" EntityType="Self.RH2" />
+          <EntitySet Name="EmpHours" EntityType="HRSQLModel.EmpHours" />
+          <EntitySet Name="EmployeeHistory" EntityType="HRSQLModel.EmployeeHistory" />
+          <EntitySet Name="EmployeeHR" EntityType="HRSQLModel.EmployeeHR" />
+        </EntityContainer>
+        <EntityType Name="EmpHours">
+          <Key>
+            <PropertyRef Name="int" />
+          </Key>
+          <Property Name="int" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmpID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmpName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Rhours" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmployeeHistory">
+          <Key>
+            <PropertyRef Name="int" />
+          </Key>
+          <Property Name="int" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Depart" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmpID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmpName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreateDate" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatePeople" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Reason" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ReasonContext" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ReasonHours" Type="Int32" Nullable="false" />
+          <Property Name="HistoryHours" Type="Int32" Nullable="false" />
+          <Property Name="TotoalHours" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EmployeeHR">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmpNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmpName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmpDepart" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HRSQLModelStoreContainer" CdmEntityContainer="HRSQLEntities">
+          <EntitySetMapping Name="Employee">
+            <EntityTypeMapping TypeName="HRSQLModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="Dept" ColumnName="Dept" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeeAcount">
+            <EntityTypeMapping TypeName="HRSQLModel.EmployeeAcount">
+              <MappingFragment StoreEntitySet="EmployeeAcount">
+                <ScalarProperty Name="int" ColumnName="int" />
+                <ScalarProperty Name="Depart" ColumnName="Depart" />
+                <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+                <ScalarProperty Name="EmpName" ColumnName="EmpName" />
+                <ScalarProperty Name="CreatDate" ColumnName="CreatDate" />
+                <ScalarProperty Name="CraetPeople" ColumnName="CraetPeople" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HRAdmin">
+            <EntityTypeMapping TypeName="HRSQLModel.HRAdmin">
+              <MappingFragment StoreEntitySet="HRAdmin">
+                <ScalarProperty Name="int" ColumnName="int" />
+                <ScalarProperty Name="Account" ColumnName="Account" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Depart" ColumnName="Depart" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Lev" ColumnName="Lev" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HRDepartment">
+            <EntityTypeMapping TypeName="HRSQLModel.HRDepartment">
+              <MappingFragment StoreEntitySet="HRDepartment">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Record">
+            <EntityTypeMapping TypeName="HRSQLModel.Record">
+              <MappingFragment StoreEntitySet="Record">
+                <ScalarProperty Name="Dept" ColumnName="Dept" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="EnrollID" ColumnName="EnrollID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Min" ColumnName="Min" />
+                <ScalarProperty Name="Mout" ColumnName="Mout" />
+                <ScalarProperty Name="Ain" ColumnName="Ain" />
+                <ScalarProperty Name="Aout" ColumnName="Aout" />
+                <ScalarProperty Name="TimeRecord" ColumnName="TimeRecord" />
+                <ScalarProperty Name="Cheked" ColumnName="Cheked" />
+                <ScalarProperty Name="Marking" ColumnName="Marking" />
+                <ScalarProperty Name="int" ColumnName="int" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RH2">
+            <EntityTypeMapping TypeName="HRSQLModel.RH2">
+              <MappingFragment StoreEntitySet="RH2">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="PNumber" ColumnName="PNumber" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LDate" ColumnName="LDate" />
+                <ScalarProperty Name="ODate" ColumnName="ODate" />
+                <ScalarProperty Name="Division" ColumnName="Division" />
+                <ScalarProperty Name="IDcard" ColumnName="IDcard" />
+                <ScalarProperty Name="Codename" ColumnName="Codename" />
+                <ScalarProperty Name="OrderDoctor" ColumnName="OrderDoctor" />
+                <ScalarProperty Name="Morder" ColumnName="Morder" />
+                <ScalarProperty Name="MorderName" ColumnName="MorderName" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Money" ColumnName="Money" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmpHours">
+            <EntityTypeMapping TypeName="HRSQLModel.EmpHours">
+              <MappingFragment StoreEntitySet="EmpHours">
+                <ScalarProperty Name="Rhours" ColumnName="Rhours" />
+                <ScalarProperty Name="EmpName" ColumnName="EmpName" />
+                <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+                <ScalarProperty Name="int" ColumnName="int" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeeHistory">
+            <EntityTypeMapping TypeName="HRSQLModel.EmployeeHistory">
+              <MappingFragment StoreEntitySet="EmployeeHistory">
+                <ScalarProperty Name="TotoalHours" ColumnName="TotoalHours" />
+                <ScalarProperty Name="HistoryHours" ColumnName="HistoryHours" />
+                <ScalarProperty Name="ReasonHours" ColumnName="ReasonHours" />
+                <ScalarProperty Name="ReasonContext" ColumnName="ReasonContext" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="CreatePeople" ColumnName="CreatePeople" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="EmpName" ColumnName="EmpName" />
+                <ScalarProperty Name="EmpID" ColumnName="EmpID" />
+                <ScalarProperty Name="Depart" ColumnName="Depart" />
+                <ScalarProperty Name="int" ColumnName="int" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeeHR">
+            <EntityTypeMapping TypeName="HRSQLModel.EmployeeHR">
+              <MappingFragment StoreEntitySet="EmployeeHR">
+                <ScalarProperty Name="EmpDepart" ColumnName="EmpDepart" />
+                <ScalarProperty Name="EmpName" ColumnName="EmpName" />
+                <ScalarProperty Name="EmpNumber" ColumnName="EmpNumber" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="無" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

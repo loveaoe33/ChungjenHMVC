@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HRSQLModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="Dept" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="EmployeeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EmployeeId" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="EmployeeAcount">
+    <Key>
+      <PropertyRef Name="int" />
+    </Key>
+    <Property Name="int" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Depart" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EmpID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EmpName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CraetPeople" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HRAdmin">
+    <Key>
+      <PropertyRef Name="int" />
+    </Key>
+    <Property Name="int" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Account" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Depart" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Lev" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="HRDepartment">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Record">
+    <Key>
+      <PropertyRef Name="int" />
+    </Key>
+    <Property Name="Dept" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UserID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="EnrollID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Min" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Mout" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Ain" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Aout" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TimeRecord" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Cheked" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Marking" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="int" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="RH2">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PNumber" Type="Double" />
+    <Property Name="Number" Type="Double" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="LDate" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ODate" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Division" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="IDcard" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Codename" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="OrderDoctor" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Morder" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="MorderName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="StartDate" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="EndDate" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Quantity" Type="Double" />
+    <Property Name="Count" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Money" Type="Double" />
+  </EntityType>
+  <EntityContainer Name="HRSQLEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Employee" EntityType="Self.Employee" />
+    <EntitySet Name="EmployeeAcount" EntityType="Self.EmployeeAcount" />
+    <EntitySet Name="HRAdmin" EntityType="Self.HRAdmin" />
+    <EntitySet Name="HRDepartment" EntityType="Self.HRDepartment" />
+    <EntitySet Name="Record" EntityType="Self.Record" />
+    <EntitySet Name="RH2" EntityType="Self.RH2" />
+    <EntitySet Name="EmpHours" EntityType="HRSQLModel.EmpHours" />
+    <EntitySet Name="EmployeeHistory" EntityType="HRSQLModel.EmployeeHistory" />
+    <EntitySet Name="EmployeeHR" EntityType="HRSQLModel.EmployeeHR" />
+  </EntityContainer>
+  <EntityType Name="EmpHours">
+    <Key>
+      <PropertyRef Name="int" />
+    </Key>
+    <Property Name="int" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmpID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EmpName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Rhours" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EmployeeHistory">
+    <Key>
+      <PropertyRef Name="int" />
+    </Key>
+    <Property Name="int" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Depart" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EmpID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EmpName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreateDate" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreatePeople" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Reason" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ReasonContext" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ReasonHours" Type="Int32" Nullable="false" />
+    <Property Name="HistoryHours" Type="Int32" Nullable="false" />
+    <Property Name="TotoalHours" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EmployeeHR">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmpNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EmpName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EmpDepart" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>
